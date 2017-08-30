@@ -1,0 +1,79 @@
+settings {
+	parser-class:	RegexParser;
+	parser-package:	ch.eskaton.regex.parser;
+	token-enum:	ch.eskaton.regex.parser.RegexToken;
+}
+
+token {
+	LBRACE, RBRACE, LBRACKET, RBRACKET, HYPHEN, STAR, PLUS, OPTION,
+	OR, NOT, CLASSCHAR, CHAR, EOL
+}
+
+rules {
+	regexp[RegexNode]:	expr EOL {
+				$$ = $1;
+			};
+	expr[RegexNode]:	term {
+				$$ = $1;
+			}
+			|	expr OR term {
+				if( $1 instanceof RegexSelection )
+					$1.add($3);
+				else
+					($1 = new RegexSelection($1)).add($3);
+				$$ = $1;
+			};
+	term[RegexNode]:	factor {
+				$$ = $1;
+			}
+			|	term factor {
+				if( $1 instanceof RegexConcatenation )
+					$1.add($2);
+				else 
+					($1 = new RegexConcatenation($1)).add($2);
+				$$ = $1;
+			};
+	factor[RegexNode]:	operand
+			|	factor	STAR {
+				$$ = new RegexKleeneStar($1);
+			}
+			|	factor	PLUS {
+				RegexNode tmp = new RegexConcatenation($1);
+				tmp.add(new RegexKleeneStar($1));
+				$$ = tmp;
+			}
+			|	factor	OPTION {
+				$$ = new RegexOptional($1);
+			};
+	operand[RegexNode]:	characterClass {
+				$$ = $1;
+			}
+			|	LBRACE expr RBRACE {
+				$$ = $2;
+			};
+	characterClass[RegexCharacterClass]:	CHAR {
+				$$ = new RegexCharacterClass($1);
+			}
+			|	LBRACKET chars RBRACKET
+			|	LBRACKET NOT chars RBRACKET {
+				$3.invert();
+				$$ = $3;
+			};
+	chars[RegexCharacterClass]:	characterRange {
+				$$ = $1;
+			}
+			|	chars characterRange {
+				$1.add($2);
+				$$ = $1;
+			};
+	characterRange[RegexCharacterClass]:	CLASSCHAR HYPHEN CLASSCHAR{
+				$$ = new RegexCharacterClass($1, $3);
+			}
+			|	CLASSCHAR {
+				$$ = new RegexCharacterClass($1);
+			};
+}
+
+accept {
+	regexp
+}
