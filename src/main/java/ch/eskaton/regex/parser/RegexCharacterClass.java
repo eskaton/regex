@@ -36,8 +36,8 @@ import ch.eskaton.yajpg.api.Token;
  * A character class is a node in a regex syntax tree which contains one
  * or more character ranges.
  * <p>
- * All charachters, whether it's a single charachter or a class like [a-z]
- * are converted to a charachter class.
+ * All characters, whether it's a single character or a class like [a-z]
+ * are converted to a character class.
  */
 public class RegexCharacterClass extends RegexNode {
 

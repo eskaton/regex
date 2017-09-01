@@ -32,7 +32,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A character range contains one ore more characters of a charachter class of
+ * A character range contains one ore more characters of a character class of
  * a regular expression.
  * <p>
  * E.g. [a-z0] contains two character ranges. One for a-z and one for 0.
