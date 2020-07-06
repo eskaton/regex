@@ -157,7 +157,7 @@ public class RegexCharacterRange implements Comparable<RegexCharacterRange> {
 
     /**
      * Checks whether the set contains overlapping ranges and returns a new
-     * set which contains non-overlapping ranges that conver the same range.
+     * set which contains non-overlapping ranges that cover the same range.
      */
     public static Set<RegexCharacterRange> splitIntersectingRanges(
             Set<RegexCharacterRange> chars) {

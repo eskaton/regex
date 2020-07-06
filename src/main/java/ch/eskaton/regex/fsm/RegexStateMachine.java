@@ -262,10 +262,9 @@ public class RegexStateMachine {
         finalStates.clear();
 
         /*
-         * Suche fuer jeden Zustand moegliche direkte Transitionen und fuege sie
-         * dem Zustand hinzu. Bestimme die Endzustaende.
+         * For each state search possible direct transitions and add them to the state.
+         * Determine the target states.
          */
-
         states.push(initialState);
         nonLambdaStates.add(initialState);
 
@@ -295,7 +294,7 @@ public class RegexStateMachine {
         }
 
         /*
-         * Delete all lambda transiations
+         * Delete all lambda transitions
          */
         states.push(initialState);
         handledStates.clear();

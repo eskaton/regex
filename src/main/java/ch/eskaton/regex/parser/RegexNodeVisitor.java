@@ -31,6 +31,6 @@ package ch.eskaton.regex.parser;
  */
 public interface RegexNodeVisitor {
 
-	public void processNode(RegexNode node);
+	void processNode(RegexNode node);
 
 }

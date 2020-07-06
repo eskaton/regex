@@ -49,7 +49,7 @@ import ch.eskaton.regex.parser.RegexNode;
  * <p>
  * 
  * <h4>Character classes</h4> 
- * Charachters can be combined to classes in square brackets. The meta characters
+ * Characters can be combined to classes in square brackets. The meta characters
  * "?*+()|" lose their meaning, i.e. they're part of the pattern. Only "-" and "]"
  * must be escaped with a backslash.
  * 
@@ -68,7 +68,7 @@ import ch.eskaton.regex.parser.RegexNode;
  * 
  * <pre>
  * Regex regex = new Regex(&quot;0x[0-9a-fA-F]+&quot;);
- * if( regex.match(&quot;0x7A4E&quot;) ) {
+ * if (regex.match(&quot;0x7A4E&quot;)) {
  *     ...
  * } else if(regex.match(&quot;0x9DEF&quot;)) {
  *     ...
@@ -78,7 +78,7 @@ import ch.eskaton.regex.parser.RegexNode;
  * For one time use there is a class method:
  * 
  * <pre>
- * if( Regex.match(&quot;0x[0-9a-fA-F]+&quot;, &quot;0xAB12&quot; ) ) {
+ * if (Regex.match(&quot;0x[0-9a-fA-F]+&quot;, &quot;0xAB12&quot;)) {
  *     ...
  * }
  * </pre>

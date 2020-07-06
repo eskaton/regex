@@ -56,7 +56,7 @@ public class RegexCompiler {
     /**
      * Creates an automaton. The method takes a second argument to be connected
      * with the states of the automaton. This allows to determine the original 
-     * automaton that matched a pattern if multiple automatons are combined.
+     * automaton that matched a pattern if multiple automata are combined.
      */
     public RegexStateMachine compile(RegexNode node, Object object) {
         RegexCharacterClassCollector rccc = new RegexCharacterClassCollector();
@@ -219,7 +219,7 @@ public class RegexCompiler {
     }
 
     /**
-     * Combines multiple automatons to one which executes them in parallel.
+     * Combines multiple automata to one which executes them in parallel.
      */
     public RegexStateMachine combine(List<RegexStateMachine> stateMachines) {
         if (stateMachines.size() == 0) {
